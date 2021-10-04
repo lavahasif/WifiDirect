@@ -1,0 +1,17 @@
+<resources>
+
+    <style name="Theme.WifiDirect.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="WrapContentDialog" parent="Theme.AppCompat.Light.Dialog">
+        <item name="windowMinWidthMajor">0%</item>
+        <item name="windowMinWidthMinor">0%</item>
+    </style>
+    <style name="buttons" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">#002366</item>
+    </style>
+    <style name="Theme.WifiDirect.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.WifiDirect.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+</resources>

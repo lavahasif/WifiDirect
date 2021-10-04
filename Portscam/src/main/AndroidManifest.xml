@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.shersoft.portscan">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application>
+        <activity
+            android:name=".portscan"
+            android:exported="true"
+            android:label="@string/title_activity_portscan"
+            android:theme="@style/Theme.WifiDirect.NoActionBar" />
+    </application>
+
+</manifest>

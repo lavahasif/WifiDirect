@@ -3,6 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Hasif/AndroidStudioProjects/WifiDirect/Portscam/src/main/res/drawable/ic_launcher_background.xml" value="0.16927083333333334" />
+        <entry key="..\:/Users/Hasif/AndroidStudioProjects/WifiDirect/Portscam/src/main/res/layout/activity_portscan.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Hasif/AndroidStudioProjects/WifiDirect/Portscam/src/main/res/layout/content_portscan.xml" value="0.1" />
+        <entry key="..\:/Users/Hasif/AndroidStudioProjects/WifiDirect/Portscam/src/main/res/layout/fragment_second.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Hasif/AndroidStudioProjects/WifiDirect/Portscam/src/main/res/layout/text_row_item.xml" value="0.23097826086956522" />
+        <entry key="..\:/Users/Hasif/AndroidStudioProjects/WifiDirect/Portscan/src/main/res/layout/content_portscan.xml" value="0.10260416666666666" />
         <entry key="..\:/Users/Hasif/AndroidStudioProjects/WifiDirect/app/src/main/res/layout/fragment_first.xml" value="0.1" />
         <entry key="..\:/Users/Hasif/AndroidStudioProjects/WifiDirect/app/src/main/res/xml/provider_paths.xml" value="0.13020833333333334" />
       </map>

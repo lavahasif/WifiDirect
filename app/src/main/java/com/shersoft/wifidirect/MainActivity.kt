@@ -13,10 +13,12 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.fragment.app.DialogFragment
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
+import com.shersoft.portscan.NoticeDialogFragment
 import com.shersoft.wifidirect.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -81,6 +83,10 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar)
 
+
+
+
+
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -138,8 +144,12 @@ class MainActivity : AppCompatActivity() {
 //                    w2peer.discoverPeers()
 //                }).show()
 //        }
+//        confirmFireMissiles()
     }
-
+    fun confirmFireMissiles() {
+//        val newFragment: DialogFragment = NoticeDialogFragment()
+//        newFragment.show(supportFragmentManager, "missiles")
+    }
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_main, menu)

@@ -8,15 +8,19 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.provider.DocumentsContract
+import android.provider.MediaStore
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.net.toFile
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.github.drjacky.imagepicker.ImagePicker
+import com.shersoft.portscan.NoticeDialogFragment
 import com.shersoft.wifidirect.Util.FileContainer
+import com.shersoft.wifidirect.Util.FileUtil
 import com.shersoft.wifidirect.Util.Utilss
 import com.shersoft.wifidirect.Util.W2peer
 import com.shersoft.wifidirect.databinding.FragmentFirstBinding
@@ -26,9 +30,6 @@ import java.net.InetAddress
 import java.net.InetSocketAddress
 import java.net.ServerSocket
 import java.net.Socket
-import android.provider.MediaStore
-import android.util.Log
-import com.shersoft.wifidirect.Util.FileUtil
 
 
 /**
@@ -50,6 +51,7 @@ class FirstFragment : Fragment() {
         _binding = FragmentFirstBinding.inflate(inflater, container, false)
 
         w2peer = activity?.let { W2peer(it?.applicationContext, _binding!!) }!!
+        confirmFireMissiles()
         return binding.root
 
     }
@@ -94,6 +96,32 @@ class FirstFragment : Fragment() {
             launcher2.launch(intent)
 
         }
+    }
+
+    fun confirmFireMissiles() {
+        val newFragment: DialogFragment =
+            NoticeDialogFragment(object : NoticeDialogFragment.NoticeDialogListener {
+                override fun onDialogPositiveClick(dialog: DialogFragment?) {
+//                    TODO("Not yet implemented")
+                }
+
+                override fun onDialogNegativeClick(dialog: DialogFragment?) {
+//                    TODO("Not yet implemented")
+                }
+
+            })
+        newFragment.show(childFragmentManager, "missiles")
+
+//        val dialog = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//            AlertDialog.Builder(context)
+//                .setView(R.layout.content_main)
+//                .create()
+//        } else {
+//            AlertDialog.Builder(context)
+//
+//                .create()
+//        }
+//        dialog.show()
     }
 
     private val launcher =
