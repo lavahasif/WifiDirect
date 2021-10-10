@@ -290,46 +290,46 @@ open class ConnectedDevice(var contexts: Context) {
     }
 
     //
-//    fun gethostData(host: String, iDeviceConnected: AndroidIpPlugin.IDeviceConnected) {
-//        val scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
-//        val split: MutableList<String> = host.split(".") as MutableList<String>
-//
-//        val drop = split.removeAt(split.size - 1)
-//        var ip = ""
-//        split.forEach { ip += it + "." }
-//        scope.launch {
-//            var ipse = arrayOf(10, 20, 80, 156, 229, 250)
-//            val array1 = (0 until 90)
-//            val array2 = (91 until 180)
-//            val array3 = (181 until 255)
-//
-////            var arr = arrayOf(array1, array2, array3)
-//            var output = (0..255).pmap {
-//
-//
-//                var ips = ip + "$it";
+    fun gethostData(host: String, iDeviceConnected: IDeviceConnected) {
+        val scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
+        val split: MutableList<String> = host.split(".") as MutableList<String>
+
+        val drop = split.removeAt(split.size - 1)
+        var ip = ""
+        split.forEach { ip += it + "." }
+        scope.launch {
+            var ipse = arrayOf(10, 20, 80, 156, 229, 250)
+            val array1 = (0 until 90)
+            val array2 = (91 until 180)
+            val array3 = (181 until 255)
+
+//            var arr = arrayOf(array1, array2, array3)
+            var output = (0..255).pmap {
+
+
+                var ips = ip + "$it";
+
+                if (pingHost(ips, 1000) == 0) {
+//                    println("Connection============>$ips")
+                    iDeviceConnected.DeviceConnected(ips);
+//                Log.i("Connection=======>", "$ips".toString())
+                };
+
+            }
+
+
+//            for (i in 0..255) {
+//                var ips = ip + "$i";
 //
 //                if (pingHost(ips, 1000) == 0) {
 ////                    println("Connection============>$ips")
 //                    iDeviceConnected.DeviceConnected(ips);
 ////                Log.i("Connection=======>", "$ips".toString())
 //                };
-//
 //            }
-//
-//
-////            for (i in 0..255) {
-////                var ips = ip + "$i";
-////
-////                if (pingHost(ips, 1000) == 0) {
-//////                    println("Connection============>$ips")
-////                    iDeviceConnected.DeviceConnected(ips);
-//////                Log.i("Connection=======>", "$ips".toString())
-////                };
-////            }
-//        }
-//
-//    }
+        }
+
+    }
 //
 //    fun openAppSettings(
 //        context: Context?,
@@ -517,5 +517,10 @@ open class ConnectedDevice(var contexts: Context) {
         w2peer = W2peer(contexts)
 //        w2peer.discoverPeers()
     }
+
+    interface IDeviceConnected {
+        fun DeviceConnected(ip: String)
+    }
+
 }
 

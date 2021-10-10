@@ -51,7 +51,7 @@ class FirstFragment : Fragment() {
         _binding = FragmentFirstBinding.inflate(inflater, container, false)
 
         w2peer = activity?.let { W2peer(it?.applicationContext, _binding!!) }!!
-        confirmFireMissiles()
+//        confirmFireMissiles()
         return binding.root
 
     }
@@ -60,7 +60,8 @@ class FirstFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.prev.setOnClickListener {
-            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+            confirmFireMissiles()
+//            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
         }
         binding.peer.setOnClickListener {
             print(Utilss.getIPAddress(true))
@@ -99,7 +100,7 @@ class FirstFragment : Fragment() {
     }
 
     fun confirmFireMissiles() {
-        val newFragment: DialogFragment =
+        val newFragment: NoticeDialogFragment =
             NoticeDialogFragment(object : NoticeDialogFragment.NoticeDialogListener {
                 override fun onDialogPositiveClick(dialog: DialogFragment?) {
 //                    TODO("Not yet implemented")
@@ -110,7 +111,8 @@ class FirstFragment : Fragment() {
                 }
 
             })
-        newFragment.show(childFragmentManager, "missiles")
+        newFragment.show(parentFragmentManager, "missiles")
+        newFragment.listPort
 
 //        val dialog = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 //            AlertDialog.Builder(context)
