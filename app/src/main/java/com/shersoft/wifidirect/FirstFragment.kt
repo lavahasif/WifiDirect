@@ -16,7 +16,6 @@ import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import com.github.drjacky.imagepicker.ImagePicker
 import com.shersoft.portscan.NoticeDialogFragment
 import com.shersoft.wifidirect.Util.FileContainer
@@ -60,8 +59,9 @@ class FirstFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.prev.setOnClickListener {
+
             confirmFireMissiles()
-//            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+
         }
         binding.peer.setOnClickListener {
             print(Utilss.getIPAddress(true))
@@ -100,30 +100,40 @@ class FirstFragment : Fragment() {
     }
 
     fun confirmFireMissiles() {
+        val timeout_port = 1500
+        val timeout_ip = 1500
+        var type = 1;
+        var ip = "";
+        var port = "1433";
         val newFragment: NoticeDialogFragment =
-            NoticeDialogFragment(object : NoticeDialogFragment.NoticeDialogListener {
-                override fun onDialogPositiveClick(dialog: DialogFragment?) {
-//                    TODO("Not yet implemented")
-                }
+            NoticeDialogFragment(
+                timeout_ip,
+                timeout_port,
+                type,
+                ip,
+                port,
+                object : NoticeDialogFragment.NoticeDialogListener {
+                    override fun onDialogPositiveClick(dialog: DialogFragment?, ip: String) {
+                        binding.textviewStatus.text = ip;
+                        dialog?.dismiss()
 
-                override fun onDialogNegativeClick(dialog: DialogFragment?) {
-//                    TODO("Not yet implemented")
-                }
+                    }
 
-            })
+                    override fun onDialogNegativeClick(dialog: DialogFragment?) {
+                        dialog?.dismiss()
+
+                    }
+
+                    override fun onIpClicked(ip: String, dialog: DialogFragment?) {
+                        binding.textviewStatus.text = ip;
+                        dialog?.dismiss()
+                    }
+
+                })
+        newFragment.isCancelable = false
         newFragment.show(parentFragmentManager, "missiles")
-        newFragment.listPort
 
-//        val dialog = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//            AlertDialog.Builder(context)
-//                .setView(R.layout.content_main)
-//                .create()
-//        } else {
-//            AlertDialog.Builder(context)
-//
-//                .create()
-//        }
-//        dialog.show()
+
     }
 
     private val launcher =

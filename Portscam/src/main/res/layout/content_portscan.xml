@@ -54,38 +54,59 @@
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:minHeight="150dp"
+        android:paddingLeft="8dp"
 
          />
     <!-- Buttons -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="8dp"
-
-
-        android:gravity="right"
-
-        android:orientation="horizontal"
-        android:paddingTop="8dp">
+        android:paddingLeft="8dp">
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_refresh"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
+
             android:layout_marginEnd="8dp"
-            android:text="Cancel"
-            android:textColor="#002366" />
+            android:text="Refresh"
+            android:textColor="#009688" />
 
-        <com.google.android.material.button.MaterialButton
-            style="@style/buttons"
-            android:layout_width="wrap_content"
-
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:text="OK"
-            android:textColor="#F5F5F6" />
+            android:layout_marginHorizontal="8dp"
+
+
+            android:gravity="right"
+
+            android:orientation="horizontal"
+            android:paddingTop="8dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_cancel"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginEnd="8dp"
+                android:text="Cancel"
+                android:textColor="#002366" />
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_ok"
+                style="@style/buttons"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:text="OK"
+                android:textColor="#F5F5F6" />
+        </LinearLayout>
     </LinearLayout>
+
 </LinearLayout>
 
 

@@ -207,6 +207,12 @@ open class ConnectedDevice(var contexts: Context) {
         return res
     }
 
+    private val s1: String
+        get() {
+            val s = "Device Information"
+            return s
+        }
+
     fun getListOfConnectedDevice() {
         val thread = Thread {
             var br: BufferedReader? = null
@@ -228,8 +234,9 @@ open class ConnectedDevice(var contexts: Context) {
                         )
                             .isReachable(500) // this is network call so we cant do that on UI thread, so i take background thread.
                         if (isReachable) {
+                            val s = "Device Information"
                             Log.d(
-                                "Device Information", ipAddress + " : "
+                                s, ipAddress + " : "
                                         + macAddress
                             )
                         }
@@ -318,129 +325,11 @@ open class ConnectedDevice(var contexts: Context) {
             }
 
 
-//            for (i in 0..255) {
-//                var ips = ip + "$i";
-//
-//                if (pingHost(ips, 1000) == 0) {
-////                    println("Connection============>$ips")
-//                    iDeviceConnected.DeviceConnected(ips);
-////                Log.i("Connection=======>", "$ips".toString())
-//                };
-//            }
         }
 
     }
-//
-//    fun openAppSettings(
-//        context: Context?,
-//        successCallback: AndroidIpPlugin.OpenAppSettingsSuccessCallback,
-//        errorCallback: AndroidIpPlugin.ErrorCallback
-//    ) {
-//        if (context == null) {
-//            Log.d("PermissionConstants", "Context cannot be null.")
-//            errorCallback.onError(
-//                "PermissionHandler.AppSettingsManager",
-//                "Android context cannot be null."
-//            )
-//            return
-//        }
-//        try {
-//            val settingsIntent = Intent()
-//            settingsIntent.action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
-//            settingsIntent.addCategory(Intent.CATEGORY_DEFAULT)
-//            settingsIntent.data = Uri.parse("package:" + context.packageName)
-//            settingsIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-//            settingsIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
-//            settingsIntent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS)
-//            context.startActivity(settingsIntent)
-//            successCallback.onSuccess(true)
-//        } catch (ex: java.lang.Exception) {
-//            successCallback.onSuccess(false)
-//        }
-//    }
-//
-    val scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
-//    fun portbbyIp(
-//        localhost: String,
-//        port: Int,
-//        timeout: Int,
-//        array: ArrayList<Int>,
-//        iDeviceConnected: AndroidIpPlugin.IPortScan
-//    ) {
-//
-//
-//        scope.launch {
-//
-//            if (pingHost(localhost, timeout) == 0) {
-//                var output = (array[0]..array[1]).pmap {
-//
-//
-//                    val map = portScan(localhost, it, timeout)
-////                    print(map)
-//                    if (map["success"] == "true") {
-////                        print("=====s=>$map")
-//                        iDeviceConnected.onSuccess(map);
-//
-//                    } else {
-////                        print("=====f=>$map")
-////                        iDeviceConnected.onError(map);
-//                    }
-//
-//                }
-//            };
-//
-//
-//        }
-//
-//
-//    }
 
-//    fun portbbyIpCurrent(
-//        localhost: String,
-//        port: Int,
-//        timeout: Int,
-//        array: ArrayList<Int>,
-//        iDeviceConnected: AndroidIpPlugin.IPortScan
-//    ) {
-//        val scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
-//        val split: MutableList<String> = localhost.split(".") as MutableList<String>
-//
-//
-//        var ip = ""
-//        split.forEach { ip += it + "." }
-//        scope.launch {
-//
-//
-//            var outputs = (0..255).pmap {
-//
-//
-//                var ips = ip + "$it";
-//
-//                if (pingHost(ips, timeout) == 0) {
-//                    var output = (array[0]..array[1]).pmap {
-//
-//
-//                        val map = portScan(localhost, it, timeout)
-//
-//                        if (map["success"] == "true") {
-//                            print("=====s=>$map")
-//                            iDeviceConnected.onSuccess(map);
-//
-//                        } else {
-//                            print("=====f=>$map")
-//                            iDeviceConnected.onError(map);
-//                        }
-//
-//                    }
-//                };
-//
-//            }
-//
-//
-//        }
-//
-//
-//    }
+    val scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
 
 
     fun portScan(localhost: String, port: Int, timeout: Int): Map<String, String> {
@@ -462,39 +351,7 @@ open class ConnectedDevice(var contexts: Context) {
             socket.close()
 
             return map;
-        }
-//        catch (e: UnknownHostException) {
-//            map.put("ip", localhost);
-//            map.put("success", "false");
-//            map.put("port", port.toString());
-//
-//            return map;
-//        }
-//        catch (e: SocketTimeoutException) {
-//            if (socket!!.isConnected) {
-//                map.put("success", "true");
-//                map.put("ip", localhost);
-//                map.put("port", port.toString());
-//                map.put("result", "");
-//                socket.close()
-//                return map;
-//            }
-//            map.put("success", "false");
-//            map.put("ip", localhost);
-//            map.put("port", port.toString());
-//
-//            return map;
-//        }
-//        catch (e: SocketException) {
-//
-//            map.put("success", "false");
-//            map.put("ip", localhost);
-//            map.put("port", port.toString());
-//            map.put("result", e.toString());
-//
-//            return map;
-//        }
-        catch (e: Exception) {
+        } catch (e: Exception) {
             if (e.message.toString().contains("already connected")) {
                 map.put("success", "true");
                 map.put("ip", localhost);

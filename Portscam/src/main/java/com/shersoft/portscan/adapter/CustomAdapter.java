@@ -8,11 +8,17 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.shersoft.portscan.NoticeDialogFragment;
 import com.shersoft.portscan.R;
+
+import java.util.ArrayList;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
 
-    private String[] localDataSet;
+    //    private String[] localDataSet;
+    private ArrayList localDataSet;
+    private NoticeDialogFragment.NoticeDialogListener listener;
+    private NoticeDialogFragment noticeDialogFragment;
 
     /**
      * Provide a reference to the type of views that you are using
@@ -36,11 +42,15 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     /**
      * Initialize the dataset of the Adapter.
      *
-     * @param dataSet String[] containing the data to populate views to be used
-     *                by RecyclerView.
+     * @param dataSet              String[] containing the data to populate views to be used
+     *                             by RecyclerView.
+     * @param listener
+     * @param noticeDialogFragment
      */
-    public CustomAdapter(String[] dataSet) {
+    public CustomAdapter(ArrayList<?> dataSet, NoticeDialogFragment.NoticeDialogListener listener, NoticeDialogFragment noticeDialogFragment) {
         localDataSet = dataSet;
+        this.listener = listener;
+        this.noticeDialogFragment = noticeDialogFragment;
     }
 
     // Create new views (invoked by the layout manager)
@@ -59,12 +69,17 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
-        viewHolder.getTextView().setText(localDataSet[position]);
+        TextView textView = viewHolder.getTextView();
+
+        textView.setText(localDataSet.get(position).toString());
+        textView.setOnClickListener(v -> {
+            listener.onIpClicked(localDataSet.get(position).toString(), noticeDialogFragment);
+        });
     }
 
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return localDataSet.length;
+        return localDataSet.size();
     }
 }
